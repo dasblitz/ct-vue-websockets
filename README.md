@@ -1,24 +1,16 @@
-# hello-world
+## Vue, NodeJS and Websockets
 
-## Project setup
-```
-yarn install
-```
+### What the 'app' does
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+It's a simple app that keeps track of a product's stock using websockets. If you open the app in multiple tabs in your browser
+you should see the stock being updated everywhere when clicking: `Add to basket`
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### disclaimer:
 
-### Lints and fixes files
-```
-yarn lint
-```
+This is the first time I've attempted Vue coming from React. I've used vuex as a statemanager, although coming from React there were some differences that I ran into. For instance dispatch being scoped to a store module.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+The CSS was done a bit hastily as I felt I'd spend enough time on it. It's not representative of the quality I'd normally go for.
+
+For the NodeJS server I've used Express although on a real size project I'd go for [NestJS](https://docs.nestjs.com/) with Typescript.
+
+All in all it was a fun learning experience :)
