@@ -13,6 +13,7 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import { MESSAGE_TYPES } from "../server/messageHandlers/messageTypes.js";
 
 let socket;
 
@@ -44,7 +45,7 @@ export default {
   methods: {
     addToBasket() {
       if (this.connected) {
-        socket.send(JSON.stringify({ type: "order_product" }));
+        socket.send(JSON.stringify({ type: MESSAGE_TYPES.PRODUCT_ORDER }));
       }
     },
     setupSocket() {
@@ -58,7 +59,6 @@ export default {
       };
       socket.onmessage = function(event) {
         const { type, value } = JSON.parse(event.data);
-        console.log(type, value);
         switch (type) {
           case "stock_update":
             vm.error = false;
