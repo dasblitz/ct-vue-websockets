@@ -1,15 +1,20 @@
 {
-  "name": "hello-world",
+  "name": "charlie-temple-fe-case",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start:server": "node --experimental-modules src/server/server.mjs",
+    "test": "jest --detectOpenHandles"
   },
   "dependencies": {
     "core-js": "^3.4.4",
-    "vue": "^2.6.10"
+    "express": "^4.17.1",
+    "jest": "^25.1.0",
+    "vue": "^2.6.10",
+    "ws": "^7.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
@@ -17,10 +22,12 @@
     "@vue/cli-service": "^4.1.0",
     "@vue/eslint-config-prettier": "^5.0.0",
     "babel-eslint": "^10.0.3",
-    "eslint": "^5.16.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.6.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
     "prettier": "^1.19.1",
     "vue-template-compiler": "^2.6.10"
-  }
+  },
+  "type": "module"
 }
