@@ -20,6 +20,11 @@ class ProductHandler extends MessageHandler {
       switch (type) {
         case MESSAGE_TYPES.PRODUCT_ORDER:
           inStock = Math.max(inStock - 1, 0);
+
+          if (inStock === 0) {
+            inStock = 10;
+          }
+
           this.sendAll({ type: MESSAGE_TYPES.STOCK_UPDATE, value: inStock });
           break;
         default:

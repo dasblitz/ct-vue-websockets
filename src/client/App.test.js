@@ -20,13 +20,7 @@ test("can render with vuex with custom store", async () => {
 
   const { getByTestId, getByText } = render(App, { store });
 
-  expect(getByTestId("stock")).toHaveTextContent(
-    "There are 0 products remaining"
-  );
-
-  expect(getByTestId("connection-status")).toHaveTextContent(
-    "Connected to server: true"
-  );
+  expect(getByTestId("stock")).toHaveTextContent("(only 0 left)");
 
   await fireEvent.click(getByText("Add to basket"));
   expect(addToBasketFn).toHaveBeenCalled();

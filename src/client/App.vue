@@ -1,20 +1,27 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Vue NodeJS Websockets" />
-    <p data-testid="connection-status">
-      Connected to server: {{ connectedMessage }}
-    </p>
-    <p data-testid="stock">There are {{ stock }} products remaining</p>
-    <button v-bind:disabled="!canOrder" @click="addToBasket">
-      Add to basket
-    </button>
+    <div class="productCard">
+      <img class="productCard__image" src="./assets/products/bril.jpg" />
+      <p class="productCard__title">
+        Steven S.
+        <span class="productCard__stock" data-testid="stock"
+          >(only {{ stock }} left)</span
+        >
+      </p>
+      <p class="productCard__price">€ 29,00</p>
+      <Button
+        v-bind:disabled="!canOrder"
+        @click="addToBasket"
+        label="Add to basket"
+      />
+    </div>
     <p v-if="error">{{ errorMessage }}</p>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
-import HelloWorld from "./components/HelloWorld.vue";
+import Button from "./components/Button.vue";
 
 export default {
   name: "app",
@@ -43,18 +50,16 @@ export default {
     })
   },
   components: {
-    HelloWorld
+    Button
   }
 };
 </script>
 
-<style>
+<style lang="scss">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 </style>
