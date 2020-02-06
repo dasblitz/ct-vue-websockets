@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start:server": "node --experimental-modules src/server/server.mjs",
+    "start:server": "node --experimental-modules src/server/server.js",
     "test": "jest --detectOpenHandles"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "express": "^4.17.1",
     "jest": "^25.1.0",
     "vue": "^2.6.10",
+    "vuex": "^3.1.2",
     "ws": "^7.2.1"
   },
   "devDependencies": {
