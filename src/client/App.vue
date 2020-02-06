@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-    <p>Connected to server: {{ connectedMessage }}</p>
-    <p>There are {{ inStock }} products remaining</p>
+    <HelloWorld msg="Vue NodeJS Websockets" />
+    <p data-testid="connection-status">
+      Connected to server: {{ connectedMessage }}
+    </p>
+    <p data-testid="stock">There are {{ stock }} products remaining</p>
     <button v-bind:disabled="!canOrder" @click="addToBasket">
       Add to basket
     </button>
@@ -12,10 +13,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import HelloWorld from "./components/HelloWorld.vue";
-import { MESSAGE_TYPES } from "../server/messageHandlers/messageTypes.js";
-
-let socket;
 
 export default {
   name: "app",
@@ -28,48 +27,20 @@ export default {
     };
   },
   computed: {
-    canOrder: function() {
-      return this.inStock && this.connected;
+    connectedMessage() {
+      return this.$store.state.socketConnected;
     },
-    connectedMessage: function() {
-      return this.connected ? "yes" : "no";
-    }
-  },
-  created() {
-    this.setupSocket();
-  },
-  destroyed() {
-    this.connected = false;
-    socket.close();
+    canOrder() {
+      return this.stock > 0 && this.$store.state.socketConnected;
+    },
+    ...mapState("products", {
+      stock: state => state.stock
+    })
   },
   methods: {
-    addToBasket() {
-      if (this.connected) {
-        socket.send(JSON.stringify({ type: MESSAGE_TYPES.PRODUCT_ORDER }));
-      }
-    },
-    setupSocket() {
-      const vm = this;
-      socket = new WebSocket("ws://localhost:8999");
-      socket.onopen = function() {
-        vm.connected = true;
-        socket.send(
-          JSON.stringify({ type: "welcome", value: "hello from vue" })
-        );
-      };
-      socket.onmessage = function(event) {
-        const { type, value } = JSON.parse(event.data);
-        switch (type) {
-          case "stock_update":
-            vm.error = false;
-            vm.inStock = value;
-            break;
-          default:
-            vm.error = true;
-            vm.errorMessage = value;
-        }
-      };
-    }
+    ...mapActions({
+      addToBasket: "products/orderProduct"
+    })
   },
   components: {
     HelloWorld

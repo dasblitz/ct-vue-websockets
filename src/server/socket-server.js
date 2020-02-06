@@ -7,9 +7,6 @@ export const socketServer = function(options) {
 
   wss.on("connection", ws => {
     new ProductHandler(ws);
-    ws.on("ping", () => {
-      ws.emit("pong", JSON.stringify({ type: "pong" }));
-    });
   });
 
   return wss;
