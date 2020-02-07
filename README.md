@@ -1,5 +1,7 @@
 ## Vue, NodeJS and Websockets
 
+![Node.js CI](https://github.com/dasblitz/ct-vue-websockets/workflows/Node.js%20CI/badge.svg)
+
 ### What the 'app' does
 
 It's a simple app that keeps track of a product's stock using websockets. If you open the app in multiple tabs in your browser
