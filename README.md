@@ -7,7 +7,7 @@ you should see the stock being updated everywhere when clicking: `Add to basket`
 
 ### disclaimer:
 
-This is the first time I've attempted Vue coming from React. I've used vuex as a statemanager, although coming from React there were some differences that I ran into. For instance dispatch being scoped to a store module.
+This is the first time I've attempted Vue coming from React. I've used Vuex as a statemanager, although coming from React there were some differences that I ran into. For instance dispatch being scoped to a store module.
 
 The CSS was done a bit hastily as I felt I'd spend enough time on it. It's not representative of the quality I'd normally go for.
 
